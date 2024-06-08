@@ -1,0 +1,21 @@
+import json
+from typing import Dict
+
+def process_json(file_path: str) -> Dict:
+    processed_data = {}
+
+    try:
+        with open(file_path, 'r') as file:
+            data = json.load(file)
+            
+            processed_data = data
+    except FileNotFoundError:
+        print("File not found. Please provide a valid file path.")
+    except json.JSONDecodeError:
+        print("Error decoding JSON. Please check the format of the JSON file.")
+
+    return processed_data
+
+file_path = "data.json"
+processed_data = process_json(file_path)
+print("Processed Data:", processed_data)
